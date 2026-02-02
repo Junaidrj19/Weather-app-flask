@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %}My Weather App{% endblock %} {% block
+content %}
+<header>
+  <h1>Weather App ☀️</h1>
+</header>
+
+<section class="weather-card">
+  <div class="search-box">
+    <form method="POST">
+      <input
+        type="text"
+        name="city"
+        placeholder="Enter city name..."
+        required
+      />
+      <button class="btn-search">Check Weather</button>
+    </form>
+  </div>
+
+  {% if weather_data %}
+  <div class="weather-display">
+    <div class="temp-circle">
+      <span class="degrees">Temperature : {{weather_data.temperature}}°c</span>
+    </div>
+    <h2 class="city-name">{{weather_data.city}}</h2>
+    <p class="description">Condition : {{weather_data.description}}</p>
+  </div>
+  <div class="details-grid">
+    <div class="detail-item">
+      <strong>Humidity: {{ weather_data.humidity }}</strong>
+    </div>
+    <div class="detail-item">
+      <strong>Wind : {{ weather_data.wind_speed }}</strong>
+    </div>
+  </div>
+  {% endif %} {% if error %}
+  <p class="error">{{ error }}</p>
+  {% endif %}
+</section>
+{% endblock %}
